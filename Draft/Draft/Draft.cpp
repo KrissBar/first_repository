@@ -1,82 +1,121 @@
 ﻿#include <iostream>
-#include <cstdlib>
+using namespace std;
+
+// Подсчёт количества цифр в числе
+/*int CountDigits(int n)
+{
+    if (n == 0) return 0;  //без 0
+    int cnt = 0;
+
+    while (n != 0) 
+    {
+        cnt++;
+        n /= 10;
+    }
+    return cnt;
+}
+
+// Склеивание двух чисел с учётом правила "0 = нет числа"
+int Concatenate(int a, int b) 
+{
+    // Если оба числа 0 - результат 0
+    if (a == 0 && b == 0) return 0;
+
+
+    // Если первое число 0 - берём второе
+    if (a == 0) return b;
+
+    // Если второе число 0 - берём первое
+    if (b == 0) return a;
+
+    // Оба числа не 0
+    int digits = CountDigits(b);
+    int multiplier = 1;
+    for (int i = 0; i < digits; ++i) 
+    {
+        multiplier *= 10;
+    }
+    return a * multiplier + b;
+}
+
+void Reverse(int x)
+{
+    int reverse = -x;
+    std::cout << "Противоположное число:" << reverse << std::endl;
+}*/
+
+
+//Пункт 2
+void Formula(int A = 0, int B = 0, int C = 0)
+{
+    float p = (A + B + C) / 2.0;
+    float s = sqrt(p * ((p - A) * (p - B) * (p - C)));
+
+    std::cout << "Значение p = " << p << std::endl;
+    std::cout << "Значение s = " << s << std::endl;
+}
+
+void Limits()
+{
+    std::cout << "\nМинимальное значение int: " << -numeric_limits<int>::max() << std::endl;
+    std::cout << "Максимальное значение int: " << numeric_limits<int>::max() << std::endl;
+    std::cout << "Минимальное значение float: " << -numeric_limits<float>::max() << std::endl;
+    std::cout << "Максимальное значение float: " << numeric_limits<float>::max() << std::endl;
+}
 
 int main()
 {
     setlocale(LC_ALL, "Russian");
 
-    int rows = 2;
-    int cols = 2;
+    /*int console = 0;
+    int A = 0;
+    int B = 0;
+    int C = 0;
+    std::cout << "Выберите ввод:\n 1. Одно число\n 2. Два числа" << std::endl;
+    std::cin >> console;
 
-    int A = 0; // + строк сверху rows
-    int B = 0; // + столбцов слева cols
-    int C = 0; // коэффициент для заполнения
-    int D = 0; // коэффициент для заполнения
+    if(console == 1)
+    {
+        std::cout << "Исп. функция записи противоположного числа\n" << std::endl;
 
-    // Выделяем память под массив указателей
-    int** arr = (int**)malloc(rows * sizeof(int*));
+        std::cout << "\nВведите C" << std::endl;
+        std::cin >> C;
 
-    // Выделяем память
-    for (int i = 0; i < rows; ++i) {
-        arr[i] = (int*)malloc(cols * sizeof(int));
+        Reverse(C);
     }
 
-    // Ввод чисел
-    std::cout << "Введите A, B, C, D:" << std::endl;
-    for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols; ++j) {
-            std::cout << "Элемент [" << i << "][" << j << "]: ";
-            std::cin >> arr[i][j];
+    if(console == 2)
+    {
+        std::cout << "Исп. функция склеивания 2х чисел\n" << std::endl;
 
-            //Проверка А
-            if (arr[0][0] >= 0 and arr[0][1] >= 0)
-            {
-                continue;
-                //break;
-            }
-            else if (arr[0][0] <= 0)
-            {
-                std::cout << "А > 0" << std::endl;
-                std::cin >> arr[0][0];
-            }
-            else if (arr[0][1] <= 0)
-            {
-                std::cout << "B > 0" << std::endl;
-                std::cin >> arr[0][1];
-            }
-            
+        std::cout << "\nВведите А и В" << std::endl;
+        std::cin >> A;
+        std::cin >> B;
 
-            //Проверка В
-            /*if (arr[0][1] >= 0)
-            {
-                continue;
-            }
-            else
-            {
-                std::cout << "B > 0" << std::endl;
-                std::cin >> arr[0][1];
-            }*/
-        }
+        int result = Concatenate(A, B);
+        std::cout << "Склеенное число: " << result << std::endl;
     }
 
+    if (console < 1 or console > 2)
+    {
+        std::cout << "Ошибка" << std::endl;
+    }*/
 
-    // Вывод массива
-    std::cout << "\nВведённый массив:" << std::endl;
-    for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols; ++j) {
-            std::cout << arr[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
+    //Пункт 2
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    std::cout << "Введите стороны треугольника\n" << std::endl;
 
-    // Освобождение памяти
-    for (int i = 0; i < rows; ++i) {
-        free(arr[i]);
-    }
-    free(arr);
+    std::cin >> a;
+    std::cin >> b;
+    std::cin >> c;
 
-    /*arr[0][0] = A;
-    arr[0][1] = B;
-    arr[1][0] = C;
-    arr[1][1] = D;*/
+    std::cout << "a = " << a << std::endl;
+    std::cout << "b = " << b << std::endl;
+    std::cout << "c = " << c<< std::endl;
+
+    Formula(a, b, c);
+
+    Limits();
 }
